@@ -1,5 +1,5 @@
 Manifest-Version: 1.2
-Created-By: 1.6.0_22 (Sun Microsystems Inc.)
+Created-By: 1.6.0_24 (Sun Microsystems Inc.)
 Main-Class: net.minecraft.MinecraftLauncher
 
 Name: net/minecraft/dirt.png
@@ -24,13 +24,13 @@ Name: net/minecraft/LoginForm$5.class
 SHA1-Digest: p7rtV6Jq30Q4CMuuiYpBgOp0U/s=
 
 Name: net/minecraft/LauncherFrame$1$1.class
-SHA1-Digest: YbzneoZRPbjELDJY/cwWi3lXWiI=
+SHA1-Digest: CU3d1TbxZmpbLgQ/uobRMUTEiOc=
 
 Name: net/minecraft/LoginForm.class
 SHA1-Digest: 87uAE2698XWDfXVZp9620GnZCd4=
 
 Name: net/minecraft/LauncherFrame.class
-SHA1-Digest: vw/90MsEjJU63kgTdE5CdxfbSP4=
+SHA1-Digest: ykIWjYcKWQ6MP1R0hNkd7ntHSNA=
 
 Name: net/minecraft/LoginForm$11.class
 SHA1-Digest: mK5KuzhIJXL8hzsZtryo7BsGpxs=
@@ -96,7 +96,7 @@ Name: net/minecraft/GameUpdater.class
 SHA1-Digest: tnEzzpH9pjn2qYkiGgoHC6SN7Zc=
 
 Name: net/minecraft/LauncherFrame$1.class
-SHA1-Digest: ZxkL2lHdWOYQXjUhDkiwI5sFYhg=
+SHA1-Digest: VG1mwLpXTwRC74HoLF60cpdbqH0=
 
 Name: net/minecraft/OptionsPanel$4.class
 SHA1-Digest: v4I+w4KXJ6fuEdpfonFFuVaOWMY=
