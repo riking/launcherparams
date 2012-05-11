@@ -176,19 +176,25 @@ import java.util.ListIterator;
 					iter.remove();
 					if (s.startsWith("-X") && iter.hasNext())
 					{
-						launcherFrame.customParameters.put(s.substring(2), iter.next());
+                        String temp=iter.next();
+                        System.out.println("Found extra option type C: '"+s.substring(2)+"' = '"+temp+"'");
+						launcherFrame.customParameters.put(s.substring(2), temp);
 						iter.remove();
 					}
 					else if (s.startsWith("--"))
 					{
+                        System.out.println("Found extra option type B: '"+s.substring(2)+"' = 'true'");
 						launcherFrame.customParameters.put(s.substring(2), "true");
 					}
 					else
 					{
 						String[] split = s.split(":");
 						if (split.length == 1)
+                        {
+                            System.out.println("Found extra option type A: '"+s.substring(2)+"' = 'true'");
 							launcherFrame.customParameters.put("short-"+s.substring(1),"true");
-						else if (split.length > 2)
+                        }						
+                        else if (split.length > 2)
 						{
 							// Copy of pl.shockah.StringTools.implode()
 							int a=1; int b=split.length - 1;
@@ -197,10 +203,12 @@ import java.util.ListIterator;
 								if (sb.length() != 0) sb.append(":");
 								sb.append(split[a++]);
 							}
+                            System.out.println("Found extra option type E: '"+split[0]+"' = '"+sb.toString()+"'");
 							launcherFrame.customParameters.put(split[0], sb.toString());
 						}
 						else
 						{
+                            System.out.println("Found extra option type A: '"+split[0]+"' = '"+split[1]+"'");
 							launcherFrame.customParameters.put(split[0], split[1]);
 						}
 					}
