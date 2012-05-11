@@ -164,7 +164,7 @@ import java.util.ListIterator;
 /* 160 */     launcherFrame.customParameters.put("stand-alone", "true");
 /*     */     
 			// BEGIN MODIFIED CODE
-			List<String> argList = java.util.Arrays.asList(args);
+			List<String> argList = new java.util.ArrayList<String>(java.util.Arrays.asList(args));
 			ListIterator<String> iter = argList.listIterator();
 			String s;
 			while (iter.hasNext())
