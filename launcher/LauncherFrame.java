@@ -16,8 +16,9 @@
 /*     */ import javax.swing.JPasswordField;
 /*     */ import javax.swing.JTextField;
 /*     */ import javax.swing.UIManager;
-import java.util.List; // MODIFIED CODE - added import
+import java.util.ArrayList; // MODIFIED CODE - added import
 import java.util.ListIterator;
+import java.util.Arrays;
 /*     */ 
 /*     */ public class LauncherFrame extends Frame
 /*     */ {
@@ -164,9 +165,11 @@ import java.util.ListIterator;
 /* 160 */     launcherFrame.customParameters.put("stand-alone", "true");
 /*     */     
 			// BEGIN MODIFIED CODE
-			List<String> argList = new java.util.ArrayList<String>(java.util.Arrays.asList(args));
+			ArrayList<String> argList = new ArrayList<String>(Arrays.asList(args));
 			ListIterator<String> iter = argList.listIterator();
 			String s;
+            String[] newargs={};
+            ArrayList<String> unused = new ArrayList<String>();
 			while (iter.hasNext())
 			{
 				s=iter.next();
@@ -191,9 +194,9 @@ import java.util.ListIterator;
 						String[] split = s.split(":");
 						if (split.length == 1)
                         {
-                            System.out.println("Found extra option type A: '"+s.substring(2)+"' = 'true'");
+                            System.out.println("Found extra option type A: '"+s.substring(1)+"' = 'true'");
 							launcherFrame.customParameters.put("short-"+s.substring(1),"true");
-                        }						
+                        }
                         else if (split.length > 2)
 						{
 							// Copy of pl.shockah.StringTools.implode()
@@ -203,21 +206,27 @@ import java.util.ListIterator;
 								if (sb.length() != 0) sb.append(":");
 								sb.append(split[a++]);
 							}
-                            System.out.println("Found extra option type E: '"+split[0]+"' = '"+sb.toString()+"'");
-							launcherFrame.customParameters.put(split[0], sb.toString());
+                            System.out.println("Found extra option type D: '"+split[0].substring(1)+"' = '"+sb.toString()+"'");
+							launcherFrame.customParameters.put(split[0].substring(1), sb.toString());
 						}
 						else
 						{
-                            System.out.println("Found extra option type A: '"+split[0]+"' = '"+split[1]+"'");
-							launcherFrame.customParameters.put(split[0], split[1]);
+                            System.out.println("Found extra option type E: '"+split[0].substring(1)+"' = '"+split[1]+"'");
+							launcherFrame.customParameters.put(split[0].substring(1), split[1]);
 						}
 					}
 				}
+                else
+                {
+                    unused.add(s);
+                }
 			}
+            System.out.println(Arrays.toString(args));
 			// Parameter is to force return type
-			args = argList.toArray(args);
+			newargs = unused.toArray(newargs);
+            System.out.println(Arrays.toString(newargs));
 			// END MODIFIED CODE
-/* 162 */     if (args.length >= 3) {
+/* 162 */     if (newargs.length >= 3) {
 /* 163 */       String ip = args[2];
 /* 164 */       String port = "25565";
 /* 165 */       if (ip.contains(":")) {
@@ -230,10 +239,10 @@ import java.util.ListIterator;
 /* 172 */       launcherFrame.customParameters.put("port", port);
 /*     */     }
 /*     */ 
-/* 175 */     if (args.length >= 1) {
-/* 176 */       launcherFrame.loginForm.userName.setText(args[0]);
-/* 177 */       if (args.length >= 2) {
-/* 178 */         launcherFrame.loginForm.password.setText(args[1]);
+/* 175 */     if (newargs.length >= 1) {
+/* 176 */       launcherFrame.loginForm.userName.setText(newargs[0]);
+/* 177 */       if (newargs.length >= 2) {
+/* 178 */         launcherFrame.loginForm.password.setText(newargs[1]);
 /* 179 */         launcherFrame.loginForm.doLogin();
 /*     */       }
 /*     */     }
