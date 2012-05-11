@@ -16,12 +16,14 @@
 /*     */ import javax.swing.JPasswordField;
 /*     */ import javax.swing.JTextField;
 /*     */ import javax.swing.UIManager;
+import java.util.List; // MODIFIED CODE - added import
+import java.util.ListIterator;
 /*     */ 
 /*     */ public class LauncherFrame extends Frame
 /*     */ {
 /*     */   public static final int VERSION = 13;
 /*     */   private static final long serialVersionUID = 1L;
-/*  21 */   public Map<String, String> customParameters = new HashMap();
+/*  21 */   public Map<String, String> customParameters = new HashMap<String, String>(); // Decompile fix - add generics type
 /*     */   public Launcher launcher;
 /*     */   public LoginForm loginForm;
 /*     */ 
@@ -162,11 +164,12 @@
 /* 160 */     launcherFrame.customParameters.put("stand-alone", "true");
 /*     */     
 			// BEGIN MODIFIED CODE
-			List<String> argList = Arrays.asList(args);
+			List<String> argList = java.util.Arrays.asList(args);
 			ListIterator<String> iter = argList.listIterator();
+			String s;
 			while (iter.hasNext())
 			{
-				s=iter.next()
+				s=iter.next();
 				if (s.startsWith("-"))
 				{
 					// Take it out of the argslist so that numbered params will work right
