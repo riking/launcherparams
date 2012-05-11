@@ -160,7 +160,25 @@
 /* 158 */     LauncherFrame launcherFrame = new LauncherFrame();
 /* 159 */     launcherFrame.setVisible(true);
 /* 160 */     launcherFrame.customParameters.put("stand-alone", "true");
-/*     */ 
+/*     */     
+			ListIterator<String> iter = Arrays.asList(args).listIterator();
+			while (iter.hasNext())
+			{
+				s=iter.next()
+				if (s.startsWith("-"))
+				{
+					iter.remove();
+					if (s.startsWith("-X") && iter.hasNext())
+					{
+						launcherFrame.customParameters.put(s.substring(2), iter.next());
+						iter.remove();
+					}
+					else if (s.startsWith("--"))
+					{
+						launcherFrame.customParameters.put(s.substring(2), "true");
+					}
+				}
+			}
 /* 162 */     if (args.length >= 3) {
 /* 163 */       String ip = args[2];
 /* 164 */       String port = "25565";
