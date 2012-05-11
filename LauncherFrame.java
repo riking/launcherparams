@@ -161,12 +161,15 @@
 /* 159 */     launcherFrame.setVisible(true);
 /* 160 */     launcherFrame.customParameters.put("stand-alone", "true");
 /*     */     
-			ListIterator<String> iter = Arrays.asList(args).listIterator();
+			// BEGIN MODIFIED CODE
+			List<String> argList = Arrays.asList(args);
+			ListIterator<String> iter = argList.listIterator();
 			while (iter.hasNext())
 			{
 				s=iter.next()
 				if (s.startsWith("-"))
 				{
+					// Take it out of the argslist so that numbered params will work right
 					iter.remove();
 					if (s.startsWith("-X") && iter.hasNext())
 					{
@@ -177,8 +180,32 @@
 					{
 						launcherFrame.customParameters.put(s.substring(2), "true");
 					}
+					else
+					{
+						String[] split = s.split(":");
+						if (split.length == 1)
+							launcherFrame.customParameters.put("short-"+s.substring(1),"true");
+						else if (split.length > 2)
+						{
+							// Copy of pl.shockah.StringTools.implode()
+							int a=1; int b=split.length - 1;
+							StringBuffer sb = new StringBuffer();
+							while (a <= b) {
+								if (sb.length() != 0) sb.append(":");
+								sb.append(split[a++]);
+							}
+							launcherFrame.customParameters.put(split[0], sb.toString());
+						}
+						else
+						{
+							launcherFrame.customParameters.put(split[0], split[1]);
+						}
+					}
 				}
 			}
+			// Parameter is to force return type
+			args = argList.toArray(args);
+			// END MODIFIED CODE
 /* 162 */     if (args.length >= 3) {
 /* 163 */       String ip = args[2];
 /* 164 */       String port = "25565";
