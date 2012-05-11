@@ -2,7 +2,7 @@ cd launcher
 echo Compiling..
 
 
-javac -cp minecraft_launcher_unmodified.jar -d . LauncherFrame.java
+javac -cp minecraft_launcher_unmodified.jar -d . -Xlint:unchecked LauncherFrame.java
 
 
 
